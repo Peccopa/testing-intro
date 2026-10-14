@@ -19,8 +19,20 @@ function addToCart(cart, product, quantity) {
   return [...cart, { ...product, quantity }];
 }
 
-function changeQuantity() {
-  throw new Error('Пока не реализована');
+function changeQuantity(cart, productId, quantity) {
+  const product = cart.find((item) => item.id === productId);
+
+  if (!product) {
+    return cart;
+  }
+
+  if (quantity < 1 || quantity > product.stock) {
+    throw new RangeError('Некорректное количество товара');
+  }
+
+  return cart.map((item) =>
+    item.id === productId ? { ...item, quantity } : item,
+  );
 }
 
 function removeFromCart() {
