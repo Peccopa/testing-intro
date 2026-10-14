@@ -35,8 +35,8 @@ function changeQuantity(cart, productId, quantity) {
   );
 }
 
-function removeFromCart() {
-  throw new Error('Пока не реализована');
+function removeFromCart(cart, productId) {
+  return cart.filter((item) => item.id !== productId);
 }
 
 function calculateCartSubtotal() {
